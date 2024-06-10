@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../index";
 
+
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const { isAuthorized } = useContext(Context);
@@ -25,7 +26,10 @@ const Jobs = () => {
   }
 
   return (
+    <>
+
     <section className="jobs page">
+      
       <div className="container">
         <h1>ALL AVAILABLE JOBS</h1>
         <div className="banner">
@@ -43,6 +47,7 @@ const Jobs = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

@@ -1,17 +1,32 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import HeroSection from './HeroSection';
 import HowItWorks from './HowItWorks';
-import { Context } from '../../index';
 import PopularCategories from './PopularCategories';
 import PopularCompanies from './PopularCompanies';
 import { Navigate } from 'react-router-dom';
-
+import axios from 'axios';
+import toast from 'react-hot-toast';
 const Home = () => {
-  const { isAuthorized } = useContext(Context);
-
-  if (!isAuthorized) {
-    return <Navigate to="/login" />;
-  }
+  const [check,setCheck]=useState({})
+  
+  useEffect(()=>{
+    const handleCheck=async ()=>{
+      try{
+        const response=await axios.get("http://localhost:5600/api/v1/user/getuser",{withCredentials: true});
+        console.log(check);
+        if(response.data.user){
+          setCheck(response.data.user);
+        }  
+        else {
+          return <Navigate to="/login" />;
+        }      
+      }catch(error){
+        toast.error(error.response.data.message);
+      }
+    }
+    handleCheck()
+  },[])
+  
 
   return (
     <section>

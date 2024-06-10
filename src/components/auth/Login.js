@@ -11,8 +11,29 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
-  const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
+  const [check1,setCheck1]=useState({})
+  const [check,setCheck]=useState({});
+  const { isAuthorized, setIsAuthorized ,setUser} = useContext(Context);
 
+  useEffect(()=>{
+    const handleCheck=async ()=>{
+      try{
+        const response=await axios.get("http://localhost:5600/api/v1/user/getuser",{withCredentials: true});
+        console.log(check);
+        if(response.data.user){
+          setCheck1(response.data.user);
+        }      
+      }catch(error){
+        toast.error(error.response.data.message);
+      }
+    }
+    handleCheck()
+  },[])
+  if (check1) {
+    return <Navigate to='/' />;
+  }
+  
+  // const [user,setUser]=useState
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -25,22 +46,29 @@ const Login = () => {
           withCredentials: true,
         }
       );
+      setCheck(data);
+      console.log(data);
+      console.log(data.token)
       toast.success(data.message);
-      setEmail("");
-      setPassword("");
+      console.log('Before setting isAuthorized:', isAuthorized);
       setIsAuthorized(true);
       setUser(data.user);
+      console.log('After setting isAuthorized:', isAuthorized);
+      setEmail("");
+      setPassword("");
       setRole("");
+      console.log(data.token)
+      
     } catch (error) {
       toast.error(error.response.data.message);
     }
   };
 
-  useEffect(() => {
-    console.log('isAuthorized changed:', isAuthorized);
-  }, [isAuthorized]);
-
-  if (isAuthorized) {
+  // useEffect(() => {
+  //   console.log('isAuthorized changed:', isAuthorized);
+  // }, [isAuthorized]);
+  
+  if (check.token) {
     return <Navigate to='/' />;
   }
 

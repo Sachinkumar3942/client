@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../../index';
 import { FaPencilAlt, FaRegUser } from 'react-icons/fa';
 import { MdOutlineMailOutline } from "react-icons/md";
@@ -14,7 +14,25 @@ const Register = () => {
   const[password,setPassword]=useState("");
   const[role,setRole]=useState("");
   const { isAuthorized,setIsAuthorized,user,setUser} =useContext(Context)
-  
+  const [check1,setCheck1]=useState({});
+  useEffect(()=>{
+    const handleCheck=async ()=>{
+      try{
+        const response=await axios.get("http://localhost:5600/api/v1/user/getuser",{withCredentials: true});
+        // console.log(check);
+        if(response.data.user){
+          setCheck1(response.data.user);
+        }      
+      }catch(error){
+        toast.error(error.response.data.message);
+      }
+    }
+    handleCheck()
+  },[])
+  if (check1) {
+    return <Navigate to='/' />;
+  }
+
   const handleRegister=async(e)=>{
     e.preventDefault();
     try{
