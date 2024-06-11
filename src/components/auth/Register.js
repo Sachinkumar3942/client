@@ -113,7 +113,7 @@ const Register = () => {
         </form>
       </div>
       <div className="banner">
-          <img src="/register.png" alt="register" />
+          <img src="/register.jpg" alt="register" />
       </div>
     </section>
   )
