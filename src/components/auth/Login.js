@@ -29,9 +29,9 @@ const Login = () => {
     }
     handleCheck()
   },[])
-  if (check1) {
-    return <Navigate to='/' />;
-  }
+  // if (check1 && check1.role) {
+  //   return <Navigate to='/' />;
+  // }
   
   // const [user,setUser]=useState
   const handleLogin = async (e) => {

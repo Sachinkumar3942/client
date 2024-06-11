@@ -29,9 +29,9 @@ const Register = () => {
     }
     handleCheck()
   },[])
-  if (check1) {
-    return <Navigate to='/' />;
-  }
+  // if (check1) {
+  //   return <Navigate to='/' />;
+  // }
 
   const handleRegister=async(e)=>{
     e.preventDefault();

@@ -15,7 +15,7 @@ const JobDetails = () => {
     const handleCheck=async ()=>{
       try{
         const response=await axios.get("http://localhost:5600/api/v1/user/getuser",{withCredentials: true});
-        console.log(check);
+        // console.log(check);
         if(response.data.user){
           setCheck(response.data.user);
         }      
@@ -44,7 +44,7 @@ const JobDetails = () => {
   if (!check) {
     navigateTo("/login");
   }
-
+  // console.log(job)
   return (
     <section className="jobDetail page">
       <div className="container">
@@ -85,8 +85,10 @@ const JobDetails = () => {
             <></>
           ) : (
             <Link to={`/application/${job._id}`}>Apply Now</Link>
+            
           )}
         </div>
+        {/* Link to={`/application/${job._id}` */}
       </div>
     </section>
   );

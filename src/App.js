@@ -45,8 +45,8 @@ function App() {
       <Route path="/job/:id" element={<JobDetails/>}/>
       <Route path="/job/post" element={<PostJob/>}/>
       <Route path="/job/me" element={<MyJobs/>}/>
-      <Route path="/application/:id " element={<Application/>}/>
-      <Route path="/application/me " element={<MyApplications/>}/>
+      <Route path="/application/:id" element={<Application/>}/>
+      <Route path="/application/me" element={<MyApplications/>}/>
       <Route path="*" element={<NotFound/>}/>
     </Routes>
     <Footer/>

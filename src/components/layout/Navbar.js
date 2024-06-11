@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Context } from '../../index'
+import React, {  useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { GiHamburgerMenu } from "react-icons/gi";
 const Navbar = () => {
   const [show,setShow]=useState(false);
-  const {isAuthorized,setIsAuthorized,user}=useContext(Context);
   const navigateTo=useNavigate();
   
   const [check,setCheck]=useState({})
@@ -15,7 +13,6 @@ const Navbar = () => {
     const handleCheck=async ()=>{
       try{
         const response=await axios.get("http://localhost:5600/api/v1/user/getuser",{withCredentials: true});
-        console.log(check);
         if(response.data.user){
           setCheck(response.data.user);
         }        
@@ -29,18 +26,15 @@ const Navbar = () => {
     try{
       const response=await axios.get("http://localhost:5600/api/v1/user/logout",{withCredentials: true});
       toast.success(response.data.message);
-      // setIsAuthorized(false);
       setCheck(null);
       navigateTo("/login");
     }catch(error){
-      setIsAuthorized(true);
       toast.error(error.response.data.message);
     }
   }
 
   return (
     <div>
-      {/* className={check?"navbarShow":"navbarHide"} */}
       <nav className={check?"navbarShow":"navbarHide"}>
         <div className='container'>
           <div className='logo'>
@@ -56,7 +50,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to={"/applications/me"} onClick={()=>setShow(false)}>
+              <Link to={"/application/me"} onClick={()=>setShow(false)}>
               {
                 check && check.role==="Employer"?"APPLICANT'S APPLICATIONS":"MY APPLICATIONS"
               }

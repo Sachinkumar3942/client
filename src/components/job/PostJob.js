@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Navigate, useNavigate } from "react-router-dom";
-import { Context } from "../../index";
+import { useNavigate } from "react-router-dom";
 const PostJob = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -14,8 +13,6 @@ const PostJob = () => {
   const [salaryTo, setSalaryTo] = useState("");
   const [fixedSalary, setFixedSalary] = useState("");
   const [salaryType, setSalaryType] = useState("default");
-
-  const { isAuthorized, user } = useContext(Context);
 
   const [check,setCheck]=useState({})
   

@@ -10,7 +10,7 @@ const Application = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [resume, setResume] = useState(null);
-
+  console.log('hello ther')
   const { isAuthorized, user } = useContext(Context);
 
   const navigateTo = useNavigate();

@@ -13,7 +13,7 @@ const Home = () => {
     const handleCheck=async ()=>{
       try{
         const response=await axios.get("http://localhost:5600/api/v1/user/getuser",{withCredentials: true});
-        console.log(check);
+        // console.log(check);
         if(response.data.user){
           setCheck(response.data.user);
         }  

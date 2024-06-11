@@ -1,22 +1,32 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../../index";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ResumeModal from "./ResumeModal";
 
 const MyApplications = () => {
-  const { user } = useContext(Context);
   const [applications, setApplications] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [resumeImageUrl, setResumeImageUrl] = useState("");
-
-  const { isAuthorized } = useContext(Context);
   const navigateTo = useNavigate();
-
+  const [check,setCheck]=useState({})
+  
+  useEffect(()=>{
+    const handleCheck=async ()=>{
+      try{
+        const response=await axios.get("http://localhost:5600/api/v1/user/getuser",{withCredentials: true});
+        if(response.data.user){
+          setCheck(response.data.user);
+        }      
+      }catch(error){
+        toast.error(error.response.data.message);
+      }
+    }
+    handleCheck()
+  },[])
   useEffect(() => {
     try {
-      if (user && user.role === "Employer") {
+      if (check && check.role === "Employer") {
         axios
           .get("http://localhost:5600/api/v1/application/employer/getall", {
             withCredentials: true,
@@ -24,7 +34,8 @@ const MyApplications = () => {
           .then((res) => {
             setApplications(res.data.applications);
           });
-      } else {
+      } 
+      if (check && check.role === "Job Seeker") {
         axios
           .get("http://localhost:5600/api/v1/application/jobseeker/getall", {
             withCredentials: true,
@@ -36,9 +47,9 @@ const MyApplications = () => {
     } catch (error) {
       toast.error(error.response.data.message);
     }
-  }, [isAuthorized]);
+  }, [check]);
 
-  if (!isAuthorized) {
+  if (!check) {
     navigateTo("/");
   }
 
@@ -70,7 +81,7 @@ const MyApplications = () => {
 
   return (
     <section className="my_applications page">
-      {user && user.role === "Job Seeker" ? (
+      {check && check.role === "Job Seeker" ? (
         <div className="container">
           <h1>My Applications</h1>
           {applications.length <= 0 ? (
