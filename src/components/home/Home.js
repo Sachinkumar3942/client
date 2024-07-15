@@ -10,6 +10,7 @@ const Home = () => {
   const [check,setCheck]=useState({})
   
   useEffect(()=>{
+    
     const handleCheck=async ()=>{
       try{
         const response=await axios.get("https://job-server-9p16.onrender.com/api/v1/user/getuser",{withCredentials: true});
