@@ -15,6 +15,7 @@ const PostJob = () => {
   const [salaryType, setSalaryType] = useState("default");
 
   const [check,setCheck]=useState({})
+
   
   useEffect(()=>{
     const handleCheck=async ()=>{
