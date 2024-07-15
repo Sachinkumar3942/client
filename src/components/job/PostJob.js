@@ -19,7 +19,7 @@ const PostJob = () => {
   useEffect(()=>{
     const handleCheck=async ()=>{
       try{
-        const response=await axios.get("http://localhost:5600/api/v1/user/getuser",{withCredentials: true});
+        const response=await axios.get("https://job-server-9p16.onrender.com/user/getuser",{withCredentials: true});
         console.log(check);
         if(response.data.user){
           setCheck(response.data.user);
@@ -46,7 +46,7 @@ const PostJob = () => {
     }
     await axios
       .post(
-        "http://localhost:5600/api/v1/job/post",
+        "https://job-server-9p16.onrender.com/job/post",
         fixedSalary.length >= 4
           ? {
               title,
