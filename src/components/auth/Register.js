@@ -18,7 +18,7 @@ const Register = () => {
   useEffect(()=>{
     const handleCheck=async ()=>{
       try{
-        const response=await axios.get("https://job-server-9p16.onrender.com/user/getuser",{withCredentials: true});
+        const response=await axios.get("https://job-server-9p16.onrender.com/api/v1/user/getuser",{withCredentials: true});
         // console.log(check);
         if(response.data.user){
           setCheck1(response.data.user);
