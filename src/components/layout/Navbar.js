@@ -6,6 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 const Navbar = () => {
   const [show,setShow]=useState(false);
   const navigateTo=useNavigate();
+
   
   const [check,setCheck]=useState({})
   
