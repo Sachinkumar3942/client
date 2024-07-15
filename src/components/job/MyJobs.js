@@ -15,7 +15,7 @@ const MyJobs = () => {
   useEffect(()=>{
     const handleCheck=async ()=>{
       try{
-        const response=await axios.get("https://job-server-9p16.onrender.com/user/getuser",{withCredentials: true});
+        const response=await axios.get("https://job-server-9p16.onrender.com/api/v1/user/getuser",{withCredentials: true});
         console.log(check);
         if(response.data.user){
           setCheck(response.data.user);
@@ -32,7 +32,7 @@ const MyJobs = () => {
     const fetchJobs = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5600/api/v1/job/getmyjobs",
+          "https://job-server-9p16.onrender.com/api/v1/job/getmyjobs",
           { withCredentials: true }
         );
         console.log("data fetch user",data.job);
@@ -63,7 +63,7 @@ const MyJobs = () => {
   const handleUpdateJob = async (jobId) => {
     const updatedJob = myJobs.find((job) => job._id === jobId);
     await axios
-      .put(`http://localhost:5600/api/v1/job/update/${jobId}`, updatedJob, {
+      .put(`https://job-server-9p16.onrender.com/api/v1/job/update/${jobId}`, updatedJob, {
         withCredentials: true,
       })
       .then((res) => {
@@ -78,7 +78,7 @@ const MyJobs = () => {
   //Function For Deleting Job
   const handleDeleteJob = async (jobId) => {
     await axios
-      .delete(`http://localhost:5600/api/v1/job/delete/${jobId}`, {
+      .delete(`https://job-server-9p16.onrender.com/api/v1/job/delete/${jobId}`, {
         withCredentials: true,
       })
       .then((res) => {
