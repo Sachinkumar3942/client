@@ -12,7 +12,7 @@ const Navbar = () => {
   useEffect(()=>{
     const handleCheck=async ()=>{
       try{
-        const response=await axios.get("https://job-server-9p16.onrender.com/user/getuser",{withCredentials: true});
+        const response=await axios.get("https://job-server-9p16.onrender.com/api/v1/user/getuser",{withCredentials: true});
         if(response.data.user){
           setCheck(response.data.user);
         }        
@@ -24,7 +24,7 @@ const Navbar = () => {
   },[])
   const handleLogout=async ()=>{
     try{
-      const response=await axios.get("https://job-server-9p16.onrender.com/user/logout",{withCredentials: true});
+      const response=await axios.get("https://job-server-9p16.onrender.com/api/v1/user/logout",{withCredentials: true});
       toast.success(response.data.message);
       setCheck(null);
       navigateTo("/login");
