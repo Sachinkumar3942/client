@@ -7,6 +7,7 @@ import { FaPhoneFlip } from "react-icons/fa6";
 import toast from 'react-hot-toast';
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
+
 const Register = () => {
   const[name,setName]=useState("");
   const[email,setEmail]=useState("");
