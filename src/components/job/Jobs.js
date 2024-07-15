@@ -11,7 +11,7 @@ const Jobs = () => {
   useEffect(() => {
     try {
       axios
-        .get("http://localhost:5600/api/v1/job/getall", {
+        .get("https://job-server-9p16.onrender.com/job/getall", {
           withCredentials: true,
         })
         .then((res) => {
