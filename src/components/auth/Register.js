@@ -36,7 +36,7 @@ const Register = () => {
   const handleRegister=async(e)=>{
     e.preventDefault();
     try{
-      const {data} = await axios.post("https://job-server-9p16.onrender.com/user/register",
+      const {data} = await axios.post("https://job-server-9p16.onrender.com/api/v1/user/register",
         {name,email,password,phone,role},
         {
           headers:{
