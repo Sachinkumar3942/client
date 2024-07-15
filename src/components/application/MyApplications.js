@@ -14,7 +14,7 @@ const MyApplications = () => {
   useEffect(()=>{
     const handleCheck=async ()=>{
       try{
-        const response=await axios.get("https://job-server-9p16.onrender.com/user/getuser",{withCredentials: true});
+        const response=await axios.get("https://job-server-9p16.onrender.com/api/v1/user/getuser",{withCredentials: true});
         if(response.data.user){
           setCheck(response.data.user);
         }      
@@ -28,7 +28,7 @@ const MyApplications = () => {
     try {
       if (check && check.role === "Employer") {
         axios
-          .get("https://job-server-9p16.onrender.com/application/employer/getall", {
+          .get("https://job-server-9p16.onrender.com/api/v1/application/employer/getall", {
             withCredentials: true,
           })
           .then((res) => {
@@ -37,7 +37,7 @@ const MyApplications = () => {
       } 
       if (check && check.role === "Job Seeker") {
         axios
-          .get("https://job-server-9p16.onrender.com/application/jobseeker/getall", {
+          .get("https://job-server-9p16.onrender.com/api/v1/application/jobseeker/getall", {
             withCredentials: true,
           })
           .then((res) => {
@@ -56,7 +56,7 @@ const MyApplications = () => {
   const deleteApplication = (id) => {
     try {
       axios
-        .delete(`https://job-server-9p16.onrender.com/application/delete/${id}`, {
+        .delete(`https://job-server-9p16.onrender.com/api/v1/application/delete/${id}`, {
           withCredentials: true,
         })
         .then((res) => {
