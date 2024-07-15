@@ -24,7 +24,7 @@ function App() {
   useEffect(()=>{
     const fetchUser = async ()=>{
       try{
-        const response=axios.get("http://localhost:5600/api/v1/user/getuser",{withCredentials: true});
+        const response=axios.get("https://job-server-9p16.onrender.com/user/getuser",{withCredentials: true});
         setUser(response.data.user)
         setIsAuthorized(true)
       }catch(error){
